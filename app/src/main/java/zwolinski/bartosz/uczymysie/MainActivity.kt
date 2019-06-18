@@ -17,16 +17,14 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         setupRecyclerView()
-        mockDataToAdapter()
+        listenToClicks()
     }
 
-    private fun mockDataToAdapter() {
-        val list = ArrayList<Int>()
-        for(i in 1..10){
-            list.add(i)
+    private fun listenToClicks() {
+        main_fab.setOnClickListener {
+            adapter.list.add(adapter.itemCount + 1)
+            adapter.notifyDataSetChanged()
         }
-        adapter.list = list
-        adapter.notifyDataSetChanged()
     }
 
     private fun setupRecyclerView() {
